@@ -1,29 +1,31 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Hmwk06 {
     public static void main(String[] args) {
-        final int LIMIT = 100;
-        Place[] list = new Place[LIMIT];
-        int n = read("input.txt", list, LIMIT);
-        for (int i = 0; i < n; i++) {
-            System.out.println(list[i]);
-        }
+        ArrayList<Place> list = new ArrayList<>();
+        long startTime = System.currentTimeMillis();
+        read("input.txt", list);
+        long endTime = System.currentTimeMillis();
+        System.out.println(endTime-startTime + "ms");
+        selectionSort(list);
+        printSome(list, 10000);
     }
 
-    public static int read(String fileName, Place[] list, int limit) {
+    public static void read(String fileName, ArrayList<Place> list) {
         File inputFile = new File(fileName);
-        int n = 0;
 
         try {
             Scanner input = new Scanner(inputFile);
             if (input.hasNextLine()) {
-                while(input.hasNextLine() && n < limit) {
+                int n = 0;
+                while(input.hasNextLine()) {
                     String line = input.nextLine();
 
                     Place place = textToPlace(line, n+1);
-                    list[n] = place;
+                    list.add(place);
 
                     n++;
                 }
@@ -36,7 +38,6 @@ public class Hmwk06 {
             System.out.printf("File \"%s\" not found.\n", fileName);
             System.exit(1);
         }
-        return n;
     }
 
     public static Place textToPlace(String line, int lineNumber) {
@@ -90,5 +91,32 @@ public class Hmwk06 {
             return false;
         }
         return true;
+    }
+
+    public static void selectionSort(ArrayList<Place> list) {
+        for (int i = 0; i < list.size() - 1; i++) {
+            Place currentMin = list.get(i);
+            int currentMinIndex = i;
+
+            for (int j = i + 1; j < list.size(); j++) {
+                if (currentMin.compareTo(list.get(j)) > 0) {
+                    currentMin = list.get(j);
+                    currentMinIndex = j;
+                }
+            }
+
+            if (currentMinIndex != i) {
+                list.set(currentMinIndex, list.get(i));
+                list.set(i, currentMin);
+            }
+        }
+    }
+
+    public static void printSome(ArrayList<Place> list, int n) {
+        n = (n <= 0) ? 1 : n;
+
+        for (int i = 0; i < list.size(); i+=n) {
+            System.out.println(list.get(i));
+        }
     }
 }

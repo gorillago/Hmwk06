@@ -95,4 +95,15 @@ public class Place {
         }
         return result;
     }
+
+    public int compareTo(Place compare) {
+        int result = getState().compareTo(compare.getState());
+        if (result == 0) {
+            result = getName().compareTo(compare.getName());
+        }
+        if (result == 0) {
+            result = getZipCode().compareTo(compare.getZipCode());
+        }
+        return result;
+    }
 }

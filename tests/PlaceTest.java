@@ -201,4 +201,23 @@ public class PlaceTest {
         assertEquals(result5, test5.toString());
         assertEquals(result6, test6.toString());
     }
+
+    @Test
+    public void testCompareTo() throws Exception{
+        assertEquals(-5, test1.compareTo(test2));
+        assertEquals(19, test2.compareTo(test3));
+        assertEquals(-14, test3.compareTo(test4));
+        assertEquals(-5, test4.compareTo(test5));
+        assertEquals(11, test5.compareTo(test6));
+        assertEquals(-6, test6.compareTo(test1));
+
+        assertEquals(-1, test1.compareTo(test4));
+
+        assertEquals(0, test1.compareTo(test1));
+        assertEquals(0, test2.compareTo(test2));
+        assertEquals(0, test3.compareTo(test3));
+        assertEquals(0, test4.compareTo(test4));
+        assertEquals(0, test5.compareTo(test5));
+        assertEquals(0, test6.compareTo(test6));
+    }
 }
