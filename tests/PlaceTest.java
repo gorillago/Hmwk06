@@ -140,7 +140,7 @@ public class PlaceTest {
     }
 
     @Test
-    public void getZipCode() throws Exception { // 44068 78403 99609 45807 78659 62859
+    public void getZipCode() throws Exception {
         assertEquals("44068", test1.getZipCode());
         assertEquals("78403", test2.getZipCode());
         assertEquals("99609", test3.getZipCode());

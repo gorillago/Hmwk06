@@ -1,4 +1,8 @@
-public class Place {
+//Riley Flint
+//This program reads each line from the "input.txt" file and loads it into a Place object. It then makes an ArrayList
+//of those Places and sorts through it using the selectionSort method. It then prints out every ten-thousandth entry.
+
+public class Place implements Comparable<Place> {
     private String name = "";
     private String state = "";
     private double latitude = 0.0;

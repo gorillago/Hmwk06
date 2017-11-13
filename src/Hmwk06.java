@@ -6,10 +6,7 @@ import java.util.Scanner;
 public class Hmwk06 {
     public static void main(String[] args) {
         ArrayList<Place> list = new ArrayList<>();
-        long startTime = System.currentTimeMillis();
         read("input.txt", list);
-        long endTime = System.currentTimeMillis();
-        System.out.println(endTime-startTime + "ms");
         selectionSort(list);
         printSome(list, 10000);
     }
